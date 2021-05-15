@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "ES6",
+    "lib": [
+      "ES2015",
+      "ES2015.Core",
+      "ES2015.Collection",
+      "ES2015.Generator",
+      "ES2015.Iterable"
+    ],
+    "allowJs": true,
+    "checkJs": true,
+    "declaration": true,
+    "declarationDir": "dist/declarations",
+    "noImplicitAny": false,
+    "declarationMap": false,
+    "outDir": "./dist",
+    "strict": true,
+    "moduleResolution": "node",
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "types": [
+      "node"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": false,
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "lib/**/*.ts",
+    "bin/**/*.ts"
+  ]
+}

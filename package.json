@@ -1,0 +1,44 @@
+{
+  "name": "swudo",
+  "version": "1.0.0",
+  "description": "A Fast LightWeight Parser and Runtime for Typescript",
+  "type": "module",
+  "main": "dist/lib/index.ts",
+  "bin": "dist/bin/swudo.js",
+  "types": "dist/declarations/lib/utils/parser.d.ts",
+  "directories": {
+    "lib": "dist/lib",
+    "bin": "dist/bin"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && npm run fix:path",
+    "clean": "npm install && npm ci && rm -rf dist && npm run build && npm run test:cli",
+    "fix:path": "node scripts/fixPaths.js",
+    "test:cli": "node dist/bin/swudo.js --transpile test/main.ts --extract test/main.ts Doc"
+  },
+  "keywords": [
+    "ts",
+    "runtime",
+    "node",
+    "typescript",
+    "ts-compiler",
+    "ts-bundler",
+    "ts-runtime",
+    "compiler",
+    "parser",
+    "ts-parser"
+  ],
+  "author": "Haneen Mahdin",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^15.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "eslint": "^7.26.0",
+    "eslint-config-google": "^0.14.0",
+    "typescript": "^4.2.4"
+  }
+}
