@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-import { extract, transpile, readFile } from '../lib/index';
+import ts from 'typescript';
+import { extract, transpile, readFile, docs } from '../lib/index';
 
 /**
- * @param {string} command Command to check
+ * [''], {} {string} command Command to check
  * @returns {boolean} if it exits on the process running
  */
 const existsCommand = (command: string): boolean => process.argv.includes(command);
@@ -34,3 +35,11 @@ if (existsCommand('--transpile')) {
         }
     });
 }
+
+if (existsCommand('--docs')) {
+    process.argv.forEach((arg, i) => {
+        if (arg === '--docs') {
+            return docs([process.argv[i + 1]], {})
+        }
+    });
+};

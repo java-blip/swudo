@@ -13,7 +13,7 @@ interface DocEntry {
 function generateDocumentation(
     fileNames: string[],
     options: ts.CompilerOptions
-): void {
+): DocEntry[] {
     const program = ts.createProgram(fileNames, options);
 
     const checker = program.getTypeChecker();
@@ -24,6 +24,10 @@ function generateDocumentation(
             ts.forEachChild(sourceFile, visit);
         }
     }
+
+    console.log(output);
+
+    return output;
 
 
     function visit(node: ts.Node) {
