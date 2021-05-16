@@ -1,5 +1,11 @@
 import ts from 'typescript';
 
+/**
+ * 
+ * @param {string} source Source code
+ * @param {ts.TranspileOptions} transpilerOptions Typescript transpiler options
+ * @returns {string} Transpiles Javascript Code
+ */
 function transpile(source: string, transpilerOptions?: ts.TranspileOptions) {
     const input = source;
 
