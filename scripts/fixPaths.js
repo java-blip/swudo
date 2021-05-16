@@ -40,4 +40,5 @@ setTimeout(() => {
     console.log(fixPaths(`${process.cwd()}/dist/lib/utils/extract.js`));
     console.log(fixPaths(`${process.cwd()}/dist/lib/utils/readFile.js`));
     console.log(fixPaths(`${process.cwd()}/dist/lib/utils/transpile.js`));
+    console.log(fixPaths(`${process.cwd()}/dist/lib/utils/compile.js`));
 }, 2000);
