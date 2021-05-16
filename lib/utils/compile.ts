@@ -1,16 +1,17 @@
 import ts from 'typescript';
 import fs from 'fs';
+import cp from 'child_process';
 import path from 'path';
 import transpile from './transpile';
 import readFile from './readFile';
 
+
 /**
  * @param {string} file Path to the file
- * @param {boolean} shouldBuild whether to result output the file
  * @param {string} buildFileName File Name of the build file
  * @returns {void} Compiles and runs the code
  */
-function compile(file: string, shouldBuild?: boolean, buildFileName?: string): void {
+function compile(file: string, buildFileName?: string): cp.ChildProcess {
     const data = readFile(file);
 
     let jsCode = transpile(data, {
@@ -19,20 +20,18 @@ function compile(file: string, shouldBuild?: boolean, buildFileName?: string): v
         }
     });
 
-    if (shouldBuild) {
-        const pathToBuild = path.join(path.dirname(file), buildFileName || path.basename(file).replace(".ts", ".js"));
+    const pathToBuild = path.resolve(path.join(path.dirname(file), buildFileName || path.basename(file).replace(".ts", ".js")));
 
-        fs.writeFileSync(pathToBuild, jsCode, {
-            encoding: 'utf-8'
-        });
-    }
+    fs.writeFileSync(pathToBuild, jsCode, {
+        encoding: 'utf-8'
+    });
 
+    const compiler = cp.spawn(`node ${pathToBuild}`, {
+        shell: true,
+        stdio: 'inherit'
+    });
 
-    jsCode = jsCode.replace(/export\D+/g, '');
-
-    const compileContext = eval;
-
-    return compileContext(jsCode);
+    return compiler;
 }
 
 export default compile;

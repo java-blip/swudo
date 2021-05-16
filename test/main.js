@@ -1,24 +1,20 @@
-interface Doc {
-    entry?: string;
-}
-
-var myDoc: Doc = {
+var myDoc = {
     entry: 'main.ts'
-}
-
-
+};
 console.log('Hello!!!!');
 console.log(myDoc);
 console.log(process);
-export class C {
+var C = /** @class */ (function () {
     /**
      * constructor documentation
      * @param a my parameter documentation
      * @param b another parameter documentation
      */
-    constructor(a: string, b: C) { }
-
-    render(): string {
-        return '';
+    function C(a, b) {
     }
-}
+    C.prototype.render = function () {
+        return '';
+    };
+    return C;
+}());
+export { C };
