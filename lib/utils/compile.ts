@@ -31,6 +31,10 @@ function compile(file: string, buildFileName?: string): cp.ChildProcess {
         stdio: 'inherit'
     });
 
+    compiler.on('exit', (code, signal) => {
+        fs.unlink(pathToBuild, (err) => new Error(String(err)));
+    });
+
     return compiler;
 }
 
