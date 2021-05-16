@@ -25,6 +25,9 @@ usage:
        --extract <file> <identifiers[]>, -e <file> <identifiers[]> : Extract parts from code by specifying identifiers.
        --transpile <file> : Transpile Typescript and get the Compiled result in the console
        --docs <file>: Returns the documentation of the exported classes
+
+       Compiling and Running a Typescript Program - <file> --out<file>
+       --out?: Filename to append the output
 ```
 
 ## TroubleShooting

@@ -8,6 +8,9 @@ var myDoc: Doc = {
 
 
 console.log('Hello!!!!');
+console.log({
+    hello: 'string'
+});
 export class C {
     /**
      * constructor documentation
@@ -15,4 +18,8 @@ export class C {
      * @param b another parameter documentation
      */
     constructor(a: string, b: C) { }
+
+    render(): string {
+        return '';
+    }
 }
