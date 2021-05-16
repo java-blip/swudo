@@ -1,20 +1,21 @@
 import transpile from './transpile';
 import readFile from './readFile';
-import vm from 'vm';
 import ts from 'typescript';
 
 function compile(file) {
     const data = readFile(file);
 
-    const jsCode = transpile(data, {
+    let jsCode = transpile(data, {
         compilerOptions: {
             module: ts.ModuleKind.ES2015
         }
     });
 
-    const compileContext = vm.runInThisContext(jsCode);
+    jsCode = jsCode.replace(/export\D+/g, '');
 
-    return compileContext;
+    const compileContext = eval;
+
+    return compileContext(jsCode);
 }
 
 export default compile;

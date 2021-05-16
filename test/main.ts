@@ -6,6 +6,8 @@ var myDoc: Doc = {
     entry: 'main.ts'
 }
 
+
+console.log('Hello!!!!');
 export class C {
     /**
      * constructor documentation
@@ -14,7 +16,3 @@ export class C {
      */
     constructor(a: string, b: C) { }
 }
-
-console.log(C);
-
-console.log('Hello!!!!');
