@@ -10,6 +10,12 @@ interface DocEntry {
     returnType?: string;
 }
 
+/**
+ * 
+ * @param {string[]} fileNames paths to the files
+ * @param {ts.CompilerOptions} options Typescript Compiler Options
+ * @returns {DocEntry[]} An Array of DocEntry
+ */
 function generateDocumentation(
     fileNames: string[],
     options: ts.CompilerOptions
