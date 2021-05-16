@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 
-import ts from 'typescript';
-import { extract, transpile, readFile, docs } from '../lib/index';
+import { extract, transpile, readFile, compile, docs } from '../lib/index';
 
 /**
- * [''], {} {string} command Command to check
+ * @param {string} command Command to check
  * @returns {boolean} if it exits on the process running
  */
 const existsCommand = (command: string): boolean => process.argv.includes(command);
@@ -43,3 +42,9 @@ if (existsCommand('--docs')) {
         }
     });
 };
+
+if (!process.argv[2].startsWith("--")) {
+    const shouldBuild = process.argv[3] ? (process.argv[3] === '--out' ? true : false) : false;
+
+    compile(process.argv[2], shouldBuild, shouldBuild ? process.argv[4] : undefined);
+}
