@@ -14,3 +14,7 @@ export class C {
      */
     constructor(a: string, b: C) { }
 }
+
+console.log(C);
+
+console.log('Hello!!!!');
