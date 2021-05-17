@@ -6,23 +6,23 @@ import fs from 'fs';
  * @returns {void} Replace the imports with .js ext
  */
 function fixPaths(file) {
-    let targetFile = fs.readFileSync(file, "utf-8");
-    const myRegex = /import(?:["'\s]*([\w*{}\n\r\t, ]+)from\s*)?["'\s].*([@\w/_-]+)["'\s].*/gi;
+    let targetFile = fs.readFileSync(file, 'utf-8');
+    const myRegex = /import(?:[''\s]*([\w*{}\n\r\t, ]+)from\s*)?[''\s].*([@\w/_-]+)[''\s].*/gi;
 
     const imports = targetFile.match(myRegex);
 
     imports.map(imp => {
-        imp = imp.substr(imp.indexOf("\'" || '\"'), imp.lastIndexOf("\'") || imp.lastIndexOf('\"'));
+        imp = imp.substr(imp.indexOf('\'' || '\''), imp.lastIndexOf('\'') || imp.lastIndexOf('\''));
 
         // removing quotes
-        imp = imp.replace(/(')|(")/gi, "");
+        imp = imp.replace(/(')|(')/gi, '');
         // removing semi colons
-        imp = imp.replace(";", "");
+        imp = imp.replace(';', '');
 
         let tempImp = imp;
 
-        if (!tempImp.endsWith(".js") && tempImp.startsWith(".")) {
-            targetFile = targetFile.replace(tempImp, imp.concat(".js"));
+        if (!tempImp.endsWith('.js') && tempImp.startsWith('.')) {
+            targetFile = targetFile.replace(tempImp, imp.concat('.js'));
         }
     });
 
@@ -30,7 +30,7 @@ function fixPaths(file) {
         encoding: 'utf-8'
     });
 
-    return "Fixed All Paths!";
+    return 'Fixed All Paths!';
 }
 
 setTimeout(() => {

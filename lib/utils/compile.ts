@@ -9,7 +9,7 @@ import readFile from './readFile';
 /**
  * @param {string} file Path to the file
  * @param {string} buildFileName File Name of the build file
- * @returns {void} Compiles and runs the code
+ * @return {void} Compiles and runs the code
  */
 function compile(file: string, buildFileName?: string): cp.ChildProcess {
     const data = readFile(file);
@@ -20,7 +20,7 @@ function compile(file: string, buildFileName?: string): cp.ChildProcess {
         }
     });
 
-    const pathToBuild = path.resolve(path.join(path.dirname(file), buildFileName || path.basename(file).replace(".ts", ".js")));
+    const pathToBuild = path.resolve(path.join(path.dirname(file), buildFileName || path.basename(file).replace('.ts', '.js')));
 
     fs.writeFileSync(pathToBuild, jsCode, {
         encoding: 'utf-8'

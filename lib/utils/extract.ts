@@ -1,15 +1,14 @@
-import ts, { Node } from "typescript";
+import ts, { Node } from 'typescript';
 
 /**
  * Prints out particular nodes from a source file
- * 
- * @param file a path to a file
- * @param identifiers top level identifiers available
+ * @param {string} file a path to a file
+ * @param {string[]} identifiers top level identifiers available
  */
 function extract(file: string, identifiers: string[]): void {
   // Create a Program to represent the project, then pull out the
   // source file to parse its AST.
-  let program = ts.createProgram([file], { allowJs: true });
+  const program = ts.createProgram([file], { allowJs: true });
   const sourceFile = program.getSourceFile(file);
 
   // To print the AST, we'll use TypeScript's printer
@@ -20,7 +19,7 @@ function extract(file: string, identifiers: string[]): void {
 
   // Loop through the root AST nodes of the file
   ts.forEachChild(sourceFile!, node => {
-    let name = "";
+    let name = '';
 
     // This is an incomplete set of AST nodes which could have a top level identifier
     // it's left to you to expand this list, which you can do by using
@@ -40,13 +39,13 @@ function extract(file: string, identifiers: string[]): void {
 
   // Either print the found nodes, or offer a list of what identifiers were found
   if (!foundNodes.length) {
-    console.log(`Could not find any of ${identifiers.join(", ")} in ${file}, found: ${unfoundNodes.filter(f => f[0]).map(f => f[0]).join(", ")}.`);
+    console.log(`Could not find any of ${identifiers.join(', ')} in ${file}, found: ${unfoundNodes.filter(f => f[0]).map(f => f[0]).join(', ')}.`);
     process.exitCode = 1;
   } else {
     foundNodes.map(f => {
       const [name, node] = f;
-      console.log("### " + name + "\n");
-      console.log(printer.printNode(ts.EmitHint.Unspecified, node, sourceFile!)) + "\n";
+      console.log('### ' + name + '\n');
+      console.log(printer.printNode(ts.EmitHint.Unspecified, node, sourceFile!)) + '\n';
     });
   }
 }
