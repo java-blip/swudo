@@ -17,7 +17,7 @@
   "scripts": {
     "build": "tsc && npm run fix:path",
     "clean": "npm install && npm ci && rm -rf dist && npm run build && npm run test:cli",
-    "fix:path": "node scripts/fixPaths.mjs",
+    "fix:path": "node scripts/fixPaths.js",
     "test:cli": "npm run cli:docs && npm run cli:extract && npm run cli:transpile",
     "cli:docs": "node dist/bin/swudo.js --docs test/main.ts",
     "cli:extract": "node dist/bin/swudo.js --extract test/main.ts C",
